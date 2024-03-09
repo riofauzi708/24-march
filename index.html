@@ -9,13 +9,63 @@
       text-align: center;
     }
     
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .navbar .left {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .right {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #ff6b6b;
+    }
+
+    .navbar .button {
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar .button:hover {
+      background-color: #ff8f8f;
+    }
+    
     .card {
       background-color: #fff;
       width: 400px;
-      margin: 50px auto;
-      padding: 20px;
+      margin: 100px auto;
+      padding: 30px 50px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      opacity: 90%;
     }
     
     h1 {
@@ -70,27 +120,101 @@
       width: 100%;
       height: 100%;
     }
+    
+    .show-video-button {
+      display: inline-block;
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+    
+    .play-video-button,
+    .play-music-button,
+    .pause-music-button,
+    .pause-video-button {
+      display: inline-block;
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="left">
+      <a href="./index.html">Halaman Utama</a>
+      <a href="./catatan.html">Catatan</a>
+    </div>
+    <div class="right">
+      <button class="play-video-button" onclick="playVideo()">Putar Video</button>
+      <button class="pause-video-button" onclick="pauseVideo()">Jeda Video</button>
+      <button class="play-music-button" onclick="playMusic()">Putar Musik</button>
+      <button class="pause-music-button" onclick="pauseMusic()">Jeda Musik</button>
+    </div>
+  </div>
   <div class="video-container">
-    <video autoplay loop muted>
-      <source src="https://example.com/video.mp4" type="video/mp4">
+    <video id="bg-video" loop muted>
+      <source src="./src/assets/VID20240222191356.mp4" type="video/mp4">
     </video>
   </div>
   <div class="card">
     <h1>Selamat Ulang Tahun, Sayang!</h1>
     <img class="gift" src="./src/assets/Bad Luck!.gif" alt="Gift">
+    <p class="message">"Teman terkasih, hari ini adalah hari spesial yang memperingati kelahiranmu. Selamat ulang tahun yang penuh berkah! Aku ingin mengucapkan kata-kata penuh makna untukmu, pacar tercinta.
+      Kamu adalah sinar matahari dalam hidupku, yang menerangi setiap hari dengan kebahagiaan dan kehangatanmu. Dalam setiap senyummu, aku menemukan kekuatan dan inspirasi untuk menjadi lebih baik.
+      Dalam perjalanan ini, kamu telah menjadi pendamping setia dan sahabat sejati. Bersamamu, aku merasa lengkap dan diberkati. Setiap momen yang kita bagi bersama adalah kenangan yang tak ternilai harganya.
+      Kamu adalah sumber kegembiraanku, penghiburku, dan tempatku berlindung. Dalam setiap tantangan dan cobaan, kamu selalu ada di sampingku, memberiku dukungan dan kekuatan.
+      Hari ini, aku ingin mengucapkan terima kasih atas semua cinta, kesetiaan, dan kebaikan yang kamu berikan padaku. Aku bersyukur memiliki seseorang sepertimu dalam hidupku.
+      Semoga di ulang tahunmu yang istimewa ini, semua impian dan harapanmu menjadi kenyataan. Aku berjanji untuk selalu berada di sisimu, mendukungmu, dan mencintaimu tanpa syarat.
+      Selamat ulang tahun, pacar tercinta. Semoga setiap tahun yang kita lewati bersama membawa lebih banyak kebahagiaan, cinta, dan kenangan indah. Aku mencintaimu dengan segenap hatiku dan selalu akan melakukannya.
+      Terima kasih telah menjadi bagian tak tergantikan dalam hidupku. Semoga cinta kita terus berkembang dan menguat seiring berjalannya waktu. Selamat ulang tahun, sayangku!"</p>
     <p class="message">Semoga hari ulang tahunmu penuh dengan kebahagiaan dan cinta. Aku sangat beruntung memiliki kamu sebagai pacar. Terima kasih telah menjadi bagian dari hidupku. Selamat ulang tahun!</p>
     <p>Jangan lupa minta hadiahnya sama aku ya!</p>
     <img src="./src/assets/Cute Panda Cartoon.gif" alt="Gif">
-    <a class="button" href="https://wa.me/6281234567890?text=Halo%20Dima%20Ikmila,%20selamat%20ulang%20tahun!%20Ini%20hadiah%20dariku.%20%F0%9F%8E%81">Ambil Hadiah</a>
+    <a class="button" href="https://wa.me/6281234567890?text=Halo%20Dima%20Ikmila,%20selamat%20ulang%20tahun!%20Ini%20hadiah%20dariku.%20%F0%9F%8E%81">Minta Hadiah</a>
   </div>
   <script>
     var button = document.querySelector('.button');
     var phoneNumber = '6282384811190';
-    var message = encodeURIComponent('Halo Sayang, Selamat Ulang Tahun! Jangan lupa hadiahnya ya. Aku mencintaimu ❤️');
+    var message = encodeURIComponent('Halo Sayang, Aku Ulang Tahun nih! Jangan lupa kadonya ya. Aku mencintaimu ❤️');
     button.href = 'https://wa.me/' + phoneNumber + '?text=' + message;
+    
+    var bgVideo = document.getElementById('bg-video');
+    var playVideoButton = document.querySelector('.play-video-button');
+    var pauseVideoButton = document.querySelector('.pause-video-button');
+    var playMusicButton = document.querySelector('.play-music-button');
+    var pauseMusicButton = document.querySelector('.pause-music-button');
+    
+    function playVideo() {
+      bgVideo.play();
+      playVideoButton.style.display = 'none';
+      pauseVideoButton.style.display = 'inline-block';
+    }
+    
+    function pauseVideo() {
+      bgVideo.pause();
+      pauseVideoButton.style.display = 'none';
+      playVideoButton.style.display = 'inline-block';
+    }
+    
+    function playMusic() {
+      // Tambahkan kode untuk memutar musik di sini
+      playMusicButton.style.display = 'none';
+      pauseMusicButton.style.display = 'inline-block';
+    }
+    
+    function pauseMusic() {
+      // Tambahkan kode untuk menjeda musik di sini
+      pauseMusicButton.style.display = 'none';
+      playMusicButton.style.display = 'inline-block';
+    }
   </script>
 </body>
 </html>

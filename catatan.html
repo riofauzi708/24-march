@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catatan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    
+    .note-form {
+      width: 400px;
+      margin: 50px auto;
+      padding: 50px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      color: #ff6b6b;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .note-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .note-form input[type="text"],
+    .note-form textarea {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    
+    .note-form button {
+      display: block;
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+
+    .note-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 30px;
+    }
+    
+    .note-card {
+      position: relative;
+      width: 300px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin: 10px;
+    }
+    
+    .note-card h2 {
+      color: #ff6b6b;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .note-card p {
+      margin-bottom: 10px;
+    }
+    
+    .note-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .delete-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="left">
+      <a href="./index.html">Halaman Utama</a>
+      <a href="catatan.html">Catatan</a>
+    </div>
+  </div>
+  <div class="note-form">
+    <h1>Tambah Catatan</h1>
+    <form id="noteForm" onsubmit="addNote(); return false;">
+      <label for="title">Judul:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">Pesan Yang Ingin Kamu Sampaikan:</label>
+      <textarea id="content" name="content" required></textarea>
+      <button type="submit">Simpan</button>
+    </form>
+  </div>
+  <div class="note-list" id="notesList">
+    <!-- Daftar catatan akan ditambahkan di sini -->
+  </div>
+  <script>
+    function addNote() {
+      var titleInput = document.getElementById('title');
+      var contentInput = document.getElementById('content');
+      var notesList = document.getElementById('notesList');
+
+      var title = titleInput.value;
+      var content = contentInput.value;
+
+      var noteCard = document.createElement('div');
+      noteCard.classList.add('note-card');
+
+      var titleElement = document.createElement('h2');
+      titleElement.textContent = title;
+
+      var contentElement = document.createElement('p');
+      contentElement.textContent = content;
+
+      var deleteButton = document.createElement('span');
+      deleteButton.classList.add('delete-button');
+      deleteButton.textContent = 'Hapus';
+      deleteButton.addEventListener('click', function() {
+        noteCard.remove();
+        removeNoteFromLocalStorage(title, content);
+      });
+
+      noteCard.appendChild(titleElement);
+      noteCard.appendChild(contentElement);
+      noteCard.appendChild(deleteButton);
+
+      notesList.appendChild(noteCard);
+
+      titleInput.value = '';
+      contentInput.value = '';
+
+      // Menyimpan catatan ke localStorage
+      var storedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+      var note = {
+        title: title,
+        content: content
+      };
+      storedNotes.push(note);
+      localStorage.setItem('notes', JSON.stringify(storedNotes));
+    }
+
+    function removeNoteFromLocalStorage(title, content) {
+      var storedNotes = JSON.parse(localStorage.getItem('notes'));
+      if (storedNotes) {
+        var updatedNotes = storedNotes.filter(function(note) {
+          return note.title !== title || note.content !== content;
+        });
+        localStorage.setItem('notes', JSON.stringify(updatedNotes));
+      }
+    }
+
+    // Mendapatkan catatan dari localStorage saat halaman dimuat
+    window.addEventListener('load', function() {
+      var storedNotes = JSON.parse(localStorage.getItem('notes'));
+      if (storedNotes) {
+        storedNotes.forEach(function(note) {
+          var noteCard = document.createElement('div');
+          noteCard.classList.add('note-card');
+
+          var titleElement = document.createElement('h2');
+          titleElement.textContent = note.title;
+
+          var contentElement = document.createElement('p');
+          contentElement.textContent = note.content;
+
+          var deleteButton = document.createElement('span');
+          deleteButton.classList.add('delete-button');
+          deleteButton.textContent = 'Hapus';
+          deleteButton.addEventListener('click', function() {
+            noteCard.remove();
+            removeNoteFromLocalStorage(note.title, note.content);
+          });
+
+          noteCard.appendChild(titleElement);
+          noteCard.appendChild(contentElement);
+          noteCard.appendChild(deleteButton);
+
+          notesList.appendChild(noteCard);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
