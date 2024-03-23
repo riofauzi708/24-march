@@ -1,0 +1,228 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding-bottom: 800px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 16px; /* Ubah padding menjadi 20px */
+    font-size: 30px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .navbar .left {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+
+  .navbar .right {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 10px 20px; /* Ubah padding menjadi 10px 20px */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar a:hover {
+    background-color: #ff6b6b;
+  }
+
+  .navbar .button {
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar .button:hover {
+    background-color: #ff8f8f;
+  }
+  
+  h1 {
+    color: #ff6b6b;
+    font-size: 55px;
+  }
+  
+  p {
+    color: #333;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .note-card .date {
+    font-size: 12px;
+  }
+
+  .note-form {
+  width: 500px;
+  margin: 50px auto;
+  padding: 70px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.note-form label {
+  display: block;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 35px;
+
+}
+
+.note-form input[type="text"],
+.note-form textarea {
+  width: 90%;
+  padding: 20px;
+  font-size: 30px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 1px 0px;
+}
+
+.note-form button {
+  display: block;
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.note-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+  
+  .note-card {
+    position: relative;
+    width: 600px;
+    text-align: justify;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    opacity: 85%;
+}
+  
+.note-card h2 {
+  color: #ff6b6b;
+  font-size: 35px;
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
+
+.note-card p {
+  margin-bottom: 15px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.button {
+  display: inline-block;
+  background-color: #ff6b6b;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 25px;
+  font-size: 25px;
+}
+  
+  .music {
+    margin-top: 30px;
+  }
+  
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .video-container video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .show-video-button {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .play-video-button,
+  .pause-video-button,
+  .play-music-button,
+  .next-music-button {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 22px;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .img-nav {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  .for {
+    text-align: end;
+    color: #888;
+  }
+
+  @media (min-width: 321px) {
+    .card {
+      width: 600px;
+      margin: 100px auto;
+    }
+  }
+

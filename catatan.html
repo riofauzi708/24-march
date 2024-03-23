@@ -1,120 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Catatan</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
-    }
-    
-    .navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 30px;
-  width: 100%; /* Menyesuaikan lebar navbar dengan lebar halaman */
-  box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar navbar */
-}
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 10px;
-}
-    
-    .note-form {
-      width: 400px;
-      margin: 50px auto;
-      padding: 50px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    h1 {
-      color: #ff6b6b;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    
-    .note-form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    .note-form input[type="text"],
-    .note-form textarea {
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      margin-bottom: 10px;
-    }
-    
-    .note-form button {
-      display: block;
-      background-color: #ff6b6b;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 20px;
-    }
-
-    .note-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      margin-top: 30px;
-    }
-    
-    .note-card {
-      position: relative;
-      width: 300px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      margin: 10px;
-    }
-    
-    .note-card h2 {
-      color: #ff6b6b;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    
-    .note-card p {
-      margin-bottom: 10px;
-    }
-    
-    .note-card img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 10px;
-    }
-    
-    .delete-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #ff6b6b;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Notes</title>
+  <link rel="stylesheet" href="catatan.css">
 </head>
 <body>
   <div class="navbar">
     <div class="left">
+      <a href="https://www.youtube.com/channel/UCklUm-Rq6g02mpcmA4VDFqw"><img class="img-nav" src="./src/assets/channels4_profile.jpg" alt="channel kita"></a>
       <a href="./index.html">Halaman Utama</a>
-      <a href="catatan.html">Catatan</a>
+      <a href="./catatan.html">Catatan</a>
     </div>
+    <div class="right">
+      <button class="play-video-button" onclick="playVideo()">Putar Video</button>
+      <button class="pause-video-button" onclick="pauseVideo()" style="display: none;">Jeda Video</button>
+      <button class="play-music-button" onclick="playMusic(0)">Putar Musik</button>
+      <button class="next-music-button" onclick="nextMusic()" style="display: none;">Musik Selanjutnya</button>
+    </div>
+  </div>
+  <div class="video-container">
+    <video id="bg-video" loop muted>
+      <source src="./src/assets/lv_7340661790507928839_20240320225858.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="note-form">
     <h1>Tambah Catatan</h1>
@@ -123,13 +30,77 @@
       <input type="text" id="title" name="title" required>
       <label for="content">Pesan Yang Ingin Kamu Sampaikan:</label>
       <textarea id="content" name="content" required></textarea>
-      <button type="submit">Simpan</button>
+      <button class="button" type="submit">Simpan</button>
     </form>
   </div>
   <div class="note-list" id="notesList">
+    <div class="note-card">
+      <h2>Note: </h2>
+      <p>Catatan yang kamu buat akan muncul disini>></p>
+      <span class="delete-button">Hapus</span>
+    </div>
+    <div class="note-card">
+      <h2> Selamat Ulang Tahun, sayangku Dima Ikmila! 🎉 </h2>
+      <p>Ini adalah halaman khusus yang aku buat untukmu, sebagai ungkapan betapa spesialnya kamu dalam hidupku. Terkhusus halaman catatan ini, kamu bisa gunakan halaman ini untuk menyimpan catatan mengenai hari-harimu, apa yang sedang kamu pikirkan, hal yang ingin kamu ingat, atau sekedar ingin membuat pesan random. Di hari yang istimewa ini, aku ingin mengingatkanmu tentang semua momen indah yang telah kita lalui bersama dan semua impian yang kita inginkan untuk masa depan.
+        Kamu adalah orang yang paling berharga dalam hidupku, dan aku sangat bersyukur bisa merayakan hari-hari bersamamu. Semoga di tahun ini dan tahun berikutnya, semua harapan dan impianmu menjadi kenyataan.
+        Aku mencintaimu, Dima ikmila. Semoga hari ini dan setiap hari setelahnya dipenuhi dengan kebahagiaan, cinta, dan semua hal baik yang kamu inginkan.
+        Selamat merayakan hari spesialmu. Aku mencintaimu, selalu dan selamanya.</p>
+      <span class="delete-button">Hapus</span>
+    </div>
     <!-- Daftar catatan akan ditambahkan di sini -->
   </div>
   <script>
+    var bgVideo = document.getElementById('bg-video');
+    var card = document.querySelector('.card');
+    var playVideoButton = document.querySelector('.play-video-button');
+    var pauseVideoButton = document.querySelector('.pause-video-button');
+    var playMusicButton = document.querySelector('.play-music-button');
+    var nextMusicButton = document.querySelector('.next-music-button');
+    var musicList = [
+      "./src/assets/lagu-ulangtahun.mp3",
+      "./src/assets/komang.mp3",
+      "./src/assets/hingga-tuabersama.mp3",
+      "./src/assets/terindah-dihidupku.mp3"
+    ];
+    var currentMusicIndex = 0;
+
+    function playVideo() {
+      bgVideo.play();
+      card.style.display = 'none';
+      playVideoButton.style.display = 'none';
+      pauseVideoButton.style.display = 'inline-block';
+    }
+
+    function pauseVideo() {
+      bgVideo.pause();
+      card.style.display = 'block';
+      playVideoButton.style.display = 'inline-block';
+      pauseVideoButton.style.display = 'none';
+    }
+
+    var currentAudio = null;
+
+    function playMusic(index) {
+      if (currentAudio !== null) {
+        currentAudio.pause();
+      }
+
+      var audio = new Audio(musicList[index]);
+      audio.play();
+      currentAudio = audio;
+
+      playMusicButton.style.display = 'none';
+      nextMusicButton.style.display = 'inline-block';
+    }
+
+    function nextMusic() {
+      currentMusicIndex++;
+      if (currentMusicIndex >= musicList.length) {
+        currentMusicIndex = 0;
+      }
+      playMusic(currentMusicIndex);
+    }
+    
     function addNote() {
       var titleInput = document.getElementById('title');
       var contentInput = document.getElementById('content');
@@ -144,6 +115,11 @@
       var titleElement = document.createElement('h2');
       titleElement.textContent = title;
 
+      var dateElement = document.createElement('p');
+      dateElement.classList.add('date');
+      var date = new Date();
+      dateElement.textContent = formatDate(date);
+
       var contentElement = document.createElement('p');
       contentElement.textContent = content;
 
@@ -156,6 +132,7 @@
       });
 
       noteCard.appendChild(titleElement);
+      noteCard.appendChild(dateElement);
       noteCard.appendChild(contentElement);
       noteCard.appendChild(deleteButton);
 
@@ -168,11 +145,13 @@
       var storedNotes = JSON.parse(localStorage.getItem('notes')) || [];
       var note = {
         title: title,
-        content: content
+        content: content,
+        date: date.getTime() // Menyimpan tanggal sebagai timestamp
       };
-      storedNotes.push(note);
+      storedNotes.unshift(note);
       localStorage.setItem('notes', JSON.stringify(storedNotes));
     }
+
 
     function removeNoteFromLocalStorage(title, content) {
       var storedNotes = JSON.parse(localStorage.getItem('notes'));
@@ -182,6 +161,11 @@
         });
         localStorage.setItem('notes', JSON.stringify(updatedNotes));
       }
+    }
+
+    function formatDate(date) {
+      var options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('id-ID', options);
     }
 
     // Mendapatkan catatan dari localStorage saat halaman dimuat
@@ -195,6 +179,11 @@
           var titleElement = document.createElement('h2');
           titleElement.textContent = note.title;
 
+          var dateElement = document.createElement('p');
+          dateElement.classList.add('date');
+          var date = new Date(note.date);
+          dateElement.textContent = formatDate(date);
+
           var contentElement = document.createElement('p');
           contentElement.textContent = note.content;
 
@@ -207,6 +196,7 @@
           });
 
           noteCard.appendChild(titleElement);
+          noteCard.appendChild(dateElement);
           noteCard.appendChild(contentElement);
           noteCard.appendChild(deleteButton);
 
