@@ -100,7 +100,12 @@ body {
   }
   
   .music {
-    margin-top: 30px;
+    margin-top: 50px;
+  }
+
+  ul {
+    text-align: left;
+    font-size: 20px;
   }
   
   .video-container {
