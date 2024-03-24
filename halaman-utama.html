@@ -38,7 +38,7 @@
     <p>Jangan lupa minta hadiahnya sama aku ya!</p>
     <img class="gif" src="./src/assets/Cute Panda Cartoon.gif" alt="Gif">
     <br>
-    <a class="button" href="https://wa.me/6281234567890?text=Halo%20Dima%20Ikmila,%20selamat%20ulang%20tahun!%20Ini%20hadiah%20dariku.%20%F0%9F%8E%81">Minta Hadiah</a>
+    <button class="button" onclick="sendWhatsAppMessage()">Minta Hadiah</button>
     <br>
     <div class="music">
       <h2>Pilihan Musik Yang tersedia</h2>
@@ -116,7 +116,10 @@
       }
       playMusic(currentMusicIndex);
     }
-    
+
+    function sendWhatsAppMessage() {
+      window.open("https://wa.me/6282384811190?text=Halo%20sayang%20terimakasih,%20jangan%20lupa%20hadiahnya!%20aku%20sayang%20kamu.%20%F0%9F%8E%81");
+    }
   </script>
 </body>
 </html>
